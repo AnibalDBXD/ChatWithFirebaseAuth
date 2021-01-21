@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import {
   AiFillFacebook,
   AiFillGithub,
@@ -9,33 +10,24 @@ import {
   AiOutlineTwitter,
 } from "react-icons/ai";
 
-import Input from "../components/Login/Input";
-import SocialLogin from "../components/Login/SocialLogin";
-import { loginWithGitHub, onAuthStateChanged } from "../firebase/client";
-import { NormalizedUser } from "../interfaces";
+import Input from "../../components/Login/Input";
+import SocialLogin from "../../components/Login/SocialLogin";
+import { loginWithGitHub } from "../../firebase/client";
+import useUser from "../../hooks/useUser";
 
 const SigninPage: React.FC = (): JSX.Element => {
-  const [User, setUser] = useState<NormalizedUser | null>(null);
+  const user = useUser();
+  const router = useRouter();
 
   useEffect(() => {
-    onAuthStateChanged(setUser);
-  }, []);
+    user && router.replace("/home");
+  }, [router, user]);
 
   const handleClick = () => {
-    loginWithGitHub()
-      .then((user) => {
-        setUser(user as NormalizedUser);
-      })
-      .catch((error) => console.log(error));
+    loginWithGitHub().catch((error) => console.log(error));
   };
   return (
     <main className="h-screen w-screen justify-center items-center flex">
-      {User && (
-        <div>
-          <img alt={User.displayName} src={User.photoURL} />
-          <h1>{User.displayName}</h1>
-        </div>
-      )}
       <div className="w-4/5 h-3/6 p-8 border-gray-300 border rounded shadow">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <form>

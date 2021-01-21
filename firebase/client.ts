@@ -39,16 +39,14 @@ export const onAuthStateChanged = (
   onChange: Dispatch<SetStateAction<NormalizedUser | null>>,
 ): firebase.Unsubscribe => {
   return firebase.auth().onAuthStateChanged((user) => {
-    const normalizedUser = mapUserFromFirebaseAuthToUser(user);
+    console.log("onAuthStateChanged", user);
+    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null;
+    console.log("normalizedUser", normalizedUser);
     onChange(normalizedUser);
   });
 };
 
-export const loginWithGitHub = (): Promise<void | NormalizedUser> => {
+export const loginWithGitHub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider();
-  return firebase
-    .auth()
-    .signInWithPopup(githubProvider)
-    .then(mapUserFromFirebaseAuthToUser)
-    .catch((error: Error) => console.log(error));
+  return firebase.auth().signInWithPopup(githubProvider);
 };
