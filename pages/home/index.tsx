@@ -2,13 +2,16 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 import Layout from "../../components/Layout";
 import { ChatDB } from "../../firebase/client";
-import { ChatPush, message } from "../../firebase/services";
+import { ChatPush } from "../../firebase/services";
+import useMessage from "../../hooks/useMessage";
 import useUser from "../../hooks/useUser";
+import { message } from "../../interfaces";
 
 const HomePage: React.FC = (): JSX.Element => {
-  const user = useUser();
+  const [user, userLoading] = useUser();
   const [Text, setText] = useState("");
-  const [Data, setData] = useState<any>([]);
+  const [MessagesList, messageLoading, messageError] = useMessage(ChatDB);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (user) {
@@ -20,31 +23,32 @@ const HomePage: React.FC = (): JSX.Element => {
         text: Text,
         Date: new Date(),
       };
+      setText("");
       ChatPush({ ChatDB, Message });
     }
   };
-
-  useEffect(() => {
-    ChatDB.on("value", (snapshot) => {
-      const data: any = snapshot.toJSON();
-      for (const key in data) {
-        setData([...Data, data[key]]);
-      }
-    });
-  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
+  useEffect(() => {
+    messageError && alert("An error has occurred! Please try again later");
+  }, [messageError]);
+
   return (
     <>
-      <Layout ProfileSRC={user?.photoURL} ProfileALT={user?.displayName} title={"Home"}>
-        <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleChange} />
-          <input type="submit" value="Submit" />
-        </form>
-      </Layout>
+      {userLoading && messageLoading ? (
+        <h1>Loading</h1>
+      ) : (
+        <Layout ProfileSRC={user?.photoURL} ProfileALT={user?.displayName} title={"Home"}>
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={Text} onChange={handleChange} />
+            <input type="submit" value="Submit" />
+          </form>
+          {MessagesList && MessagesList.map((message, i) => <p key={i}>{message.text}</p>)}
+        </Layout>
+      )}
     </>
   );
 };

@@ -1,13 +1,6 @@
 import firebase from "firebase";
 
-export type message = {
-  User: {
-    Name: string;
-    photo: string;
-  };
-  text: string;
-  Date: Date;
-};
+import { message } from "../../interfaces/";
 
 export type chatPush = {
   ChatDB: firebase.database.Reference;

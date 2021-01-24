@@ -24,7 +24,7 @@ const Layout: React.FC<Props> = ({
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => router.push("/signin"));
+      .finally(() => router.push("/login"));
   };
   return (
     <div>

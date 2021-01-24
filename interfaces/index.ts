@@ -3,3 +3,12 @@ export type NormalizedUser = {
   email: string;
   displayName: string;
 };
+
+export type message = {
+  User: {
+    Name: string;
+    photo: string;
+  };
+  text: string;
+  Date: Date;
+};
