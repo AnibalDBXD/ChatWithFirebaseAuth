@@ -15,6 +15,8 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig);
 
+export const ChatDB = firebase.database().ref("chat");
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapUserFromFirebaseAuthToUser = (data: any): NormalizedUser => {
   if (data.user) {
@@ -35,18 +37,25 @@ const mapUserFromFirebaseAuthToUser = (data: any): NormalizedUser => {
   }
 };
 
+export const signOut = (): Promise<void> => {
+  return firebase
+    .auth()
+    .signOut()
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export const onAuthStateChanged = (
   onChange: Dispatch<SetStateAction<NormalizedUser | null>>,
 ): firebase.Unsubscribe => {
   return firebase.auth().onAuthStateChanged((user) => {
-    console.log("onAuthStateChanged", user);
     const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null;
-    console.log("normalizedUser", normalizedUser);
     onChange(normalizedUser);
   });
 };
 
-export const loginWithGitHub = () => {
+export const loginWithGitHub = (): Promise<firebase.auth.UserCredential> => {
   const githubProvider = new firebase.auth.GithubAuthProvider();
   return firebase.auth().signInWithPopup(githubProvider);
 };

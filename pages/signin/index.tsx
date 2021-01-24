@@ -1,18 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import {
-  AiFillFacebook,
-  AiFillGithub,
-  AiOutlineGoogle,
-  AiOutlineLock,
-  AiOutlineMail,
-  AiOutlineTwitter,
-} from "react-icons/ai";
+import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 
-import Input from "../../components/Login/Input";
-import SocialLogin from "../../components/Login/SocialLogin";
-import { loginWithGitHub } from "../../firebase/client";
+import Input from "../../components/Signin/Input";
+import SocialLogins from "../../components/SocialLogin";
 import useUser from "../../hooks/useUser";
 
 const SigninPage: React.FC = (): JSX.Element => {
@@ -23,9 +15,6 @@ const SigninPage: React.FC = (): JSX.Element => {
     user && router.replace("/home");
   }, [router, user]);
 
-  const handleClick = () => {
-    loginWithGitHub().catch((error) => console.log(error));
-  };
   return (
     <main className="h-screen w-screen justify-center items-center flex">
       <div className="w-4/5 h-3/6 p-8 border-gray-300 border rounded shadow">
@@ -41,26 +30,11 @@ const SigninPage: React.FC = (): JSX.Element => {
             Or continue with these social profile
           </span>
           <ul className="my-4 flex justify-center">
-            <li className="mx-4">
-              <button>
-                <SocialLogin Icon={AiOutlineGoogle} />
-              </button>
-            </li>
-            <li className="mx-4">
-              <button>
-                <SocialLogin Icon={AiFillFacebook} />
-              </button>
-            </li>
-            <li className="mx-4">
-              <button>
-                <SocialLogin Icon={AiOutlineTwitter} />
-              </button>
-            </li>
-            <li className="mx-4">
-              <button onClick={handleClick}>
-                <SocialLogin Icon={AiFillGithub} />
-              </button>
-            </li>
+            {SocialLogins.map((Social, i) => (
+              <li key={i} className="mx-4">
+                <Social />
+              </li>
+            ))}
           </ul>
         </div>
         <div className="my-4 flex justify-center">

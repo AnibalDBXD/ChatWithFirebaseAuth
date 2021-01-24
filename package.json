@@ -9,7 +9,7 @@
       "eslint --fix"
     ]
   },
-  "name": "template-next-typescript-eslint-prettier",
+  "name": "chatwithauth-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
