@@ -2,8 +2,18 @@ import { AiOutlineLock } from "react-icons/ai";
 
 import Input from "./Input";
 
-const Password: React.FC = (): JSX.Element => (
-  <Input Icon={AiOutlineLock} name="password" placeholder="Password" type="password" />
+type Props = {
+  placeholder?: string;
+};
+
+const Password: React.FC<Props> = ({ placeholder = "Password" }): JSX.Element => (
+  <Input
+    Icon={AiOutlineLock}
+    name="password"
+    placeholder={placeholder}
+    type="password"
+    autocomplete="current-password"
+  />
 );
 
 export default Password;

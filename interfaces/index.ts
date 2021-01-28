@@ -10,5 +10,5 @@ export type message = {
     photo: string;
   };
   text: string;
-  Date: Date;
+  time?: any;
 };

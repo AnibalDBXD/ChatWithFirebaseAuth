@@ -2,18 +2,17 @@ import Link from "next/link";
 
 import { ButtonInput, EmailInput, PasswordInput } from "../../components/Inputs";
 import SocialLogins from "../../components/SocialLogin";
-import useUser from "../../hooks/useUser";
 
-const LoginPage: React.FC = (): JSX.Element => {
-  useUser();
+const SigninPage: React.FC = (): JSX.Element => {
   return (
     <main className="h-screen w-screen justify-center items-center flex">
       <div className="min-w-max max-w-96 p-8 border-gray-300 border rounded shadow">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
+        <h1 className="text-2xl font-bold mb-4">Register</h1>
         <form>
           <EmailInput />
           <PasswordInput />
-          <ButtonInput>Login</ButtonInput>
+          <PasswordInput placeholder="Confirm password" />
+          <ButtonInput>Register</ButtonInput>
         </form>
         <span className="mt-4 flex justify-center text-gray-500">
           Or continue with these social profile
@@ -27,9 +26,9 @@ const LoginPage: React.FC = (): JSX.Element => {
         </ul>
         <div className="my-4 flex justify-center">
           <p>
-            Don&apos;t have an account?
-            <Link href="/login">
-              <a className="ml-2 text-blue-500 border-blue-500">Register</a>
+            Already a member?
+            <Link href="/signin">
+              <a className="ml-2 text-blue-500 border-blue-500">Login</a>
             </Link>
           </p>
         </div>
@@ -38,4 +37,4 @@ const LoginPage: React.FC = (): JSX.Element => {
   );
 };
 
-export default LoginPage;
+export default SigninPage;

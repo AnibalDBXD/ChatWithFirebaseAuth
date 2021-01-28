@@ -5,10 +5,18 @@ interface Props {
   name: string;
   placeholder: string;
   type: "text" | "email" | "password";
+  autocomplete?: string;
   error?: string;
 }
 
-const Input: React.FC<Props> = ({ Icon, name, placeholder, type, error }): JSX.Element => {
+const Input: React.FC<Props> = ({
+  Icon,
+  name,
+  placeholder,
+  type,
+  autocomplete,
+  error,
+}): JSX.Element => {
   return (
     <div className="flex flex-col mb-4">
       <div className="relative">
@@ -23,6 +31,7 @@ const Input: React.FC<Props> = ({ Icon, name, placeholder, type, error }): JSX.E
           name={name}
           type={type}
           placeholder={placeholder}
+          autoComplete={autocomplete}
           className={`text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12 ${
             error && "border-red-500"
           }`}

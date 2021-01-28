@@ -1,18 +1,22 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { onAuthStateChanged } from "../firebase/client";
 import { NormalizedUser } from "../interfaces";
 
-const useUser = (): [NormalizedUser | null, boolean] => {
-  const [User, setUser] = useState<NormalizedUser | null>(null);
-  const [Loading, setLoading] = useState<boolean>(true);
+const useUser = (): NormalizedUser | null | undefined => {
+  const [User, setUser] = useState<NormalizedUser | null | undefined>(undefined);
+  const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
     onAuthStateChanged(setUser);
-    setLoading(false);
   }, []);
 
-  return [User, Loading];
+  useEffect(() => {
+    User === null && router.push("/login");
+    User && router.push("/home");
+  }, [User, router]);
+
+  return User;
 };
 export default useUser;

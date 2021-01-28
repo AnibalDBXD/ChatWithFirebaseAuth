@@ -37,8 +37,8 @@ const mapUserFromFirebaseAuthToUser = (data: any): NormalizedUser => {
   }
 };
 
-export const signOut = (): Promise<void> => {
-  return firebase
+export const signOut = async (): Promise<void> => {
+  return await firebase
     .auth()
     .signOut()
     .catch((error) => {
@@ -47,7 +47,7 @@ export const signOut = (): Promise<void> => {
 };
 
 export const onAuthStateChanged = (
-  onChange: Dispatch<SetStateAction<NormalizedUser | null>>,
+  onChange: Dispatch<SetStateAction<NormalizedUser | null | undefined>>,
 ): firebase.Unsubscribe => {
   return firebase.auth().onAuthStateChanged((user) => {
     const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null;
@@ -55,7 +55,7 @@ export const onAuthStateChanged = (
   });
 };
 
-export const loginWithGitHub = (): Promise<firebase.auth.UserCredential> => {
+export const loginWithGitHub = async (): Promise<firebase.auth.UserCredential> => {
   const githubProvider = new firebase.auth.GithubAuthProvider();
-  return firebase.auth().signInWithPopup(githubProvider);
+  return await firebase.auth().signInWithPopup(githubProvider);
 };

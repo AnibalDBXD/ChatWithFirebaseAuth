@@ -4,6 +4,7 @@ import React, { ReactNode } from "react";
 
 import { signOut } from "../firebase/client";
 import Profile from "./Profile";
+
 type Props = {
   ProfileSRC?: string;
   ProfileALT?: string;
@@ -34,9 +35,11 @@ const Layout: React.FC<Props> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header>
-        <nav>
-          <Profile alt={ProfileALT} src={ProfileSRC} />|{" "}
-          <button onClick={handleClick}>SignOut</button>
+        <nav className="p-2 bg-gray-700 text-white flex content-center" style={{ height: "10vh" }}>
+          <Profile alt={ProfileALT} src={ProfileSRC} />
+          <button className="ml-5" onClick={handleClick}>
+            Sign out
+          </button>
         </nav>
       </header>
       {children}

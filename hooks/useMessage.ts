@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { useEffect, useState } from "react";
 
-import { message } from "../firebase/services";
+import { message } from "../interfaces";
 
 const useMessage = (DB: firebase.database.Reference): [message[], boolean, Error | null] => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

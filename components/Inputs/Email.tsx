@@ -2,8 +2,18 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import Input from "./Input";
 
-const Email: React.FC = (): JSX.Element => (
-  <Input Icon={AiOutlineMail} name="email" placeholder="Email" type="email" />
+type Props = {
+  placeholder?: string;
+};
+
+const Email: React.FC<Props> = ({ placeholder = "Email" }): JSX.Element => (
+  <Input
+    Icon={AiOutlineMail}
+    name="email"
+    placeholder={placeholder}
+    type="email"
+    autocomplete="username"
+  />
 );
 
 export default Email;

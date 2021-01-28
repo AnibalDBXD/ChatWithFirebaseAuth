@@ -1,15 +1,9 @@
-import Link from "next/link";
+import useUser from "../hooks/useUser";
+
 const IndexPage: React.FC = (): JSX.Element => {
-  return (
-    <div>
-      <Link href="/signin">
-        <a>Sign in</a>
-      </Link>
-      <Link href="/login">
-        <a>Log in</a>
-      </Link>
-    </div>
-  );
+  const user = useUser();
+
+  return <div>Loading</div>;
 };
 
 export default IndexPage;
