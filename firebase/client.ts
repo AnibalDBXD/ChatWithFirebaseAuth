@@ -64,3 +64,8 @@ export const loginWithTwitter = async (): Promise<firebase.auth.UserCredential> 
   const TwitterProvider = new firebase.auth.TwitterAuthProvider();
   return await firebase.auth().signInWithPopup(TwitterProvider);
 };
+
+export const loginWithFacebook = async (): Promise<firebase.auth.UserCredential> => {
+  const FacebookProvider = new firebase.auth.FacebookAuthProvider();
+  return await firebase.auth().signInWithPopup(FacebookProvider);
+};
