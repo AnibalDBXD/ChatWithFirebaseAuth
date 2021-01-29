@@ -12,7 +12,6 @@ const View: React.FC<Props> = ({ MessagesList, Loading }): JSX.Element => {
   const DownScroll = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("useEffect in view", MessagesList);
     DownScroll.current && DownScroll.current.scrollIntoView(true);
   }, [MessagesList]);
 

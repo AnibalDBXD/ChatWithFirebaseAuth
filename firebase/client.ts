@@ -59,3 +59,8 @@ export const loginWithGitHub = async (): Promise<firebase.auth.UserCredential> =
   const githubProvider = new firebase.auth.GithubAuthProvider();
   return await firebase.auth().signInWithPopup(githubProvider);
 };
+
+export const loginWithTwitter = async (): Promise<firebase.auth.UserCredential> => {
+  const TwitterProvider = new firebase.auth.TwitterAuthProvider();
+  return await firebase.auth().signInWithPopup(TwitterProvider);
+};
