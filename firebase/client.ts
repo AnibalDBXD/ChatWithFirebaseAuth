@@ -69,3 +69,8 @@ export const loginWithFacebook = async (): Promise<firebase.auth.UserCredential>
   const FacebookProvider = new firebase.auth.FacebookAuthProvider();
   return await firebase.auth().signInWithPopup(FacebookProvider);
 };
+
+export const loginWithGoogle = async (): Promise<firebase.auth.UserCredential> => {
+  const GoogleProvider = new firebase.auth.GoogleAuthProvider();
+  return await firebase.auth().signInWithPopup(GoogleProvider);
+};

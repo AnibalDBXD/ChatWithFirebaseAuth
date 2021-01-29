@@ -1,11 +1,11 @@
 import { AiOutlineGoogle } from "react-icons/ai";
 
-// import { loginWithGoogle } from "../../firebase/client";
+import { loginWithGoogle } from "../../firebase/client";
 import SocialLogin from "./SocialLogin";
 
 const GoogleLogin: React.FC = (): JSX.Element => {
   const handleClick = () => {
-    // loginWithGoogle().catch((error) => console.log(error));
+    loginWithGoogle().catch((error) => console.log(error));
   };
   return (
     <button onClick={handleClick}>
