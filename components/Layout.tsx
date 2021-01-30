@@ -27,6 +27,7 @@ const Layout: React.FC<Props> = ({
       })
       .finally(() => router.push("/login"));
   };
+
   return (
     <div>
       <Head>
@@ -36,7 +37,7 @@ const Layout: React.FC<Props> = ({
       </Head>
       <header>
         <nav className="p-2 bg-gray-700 text-white flex content-center" style={{ height: "10vh" }}>
-          <Profile alt={ProfileALT} src={ProfileSRC} />
+          {ProfileSRC ? <Profile alt={ProfileALT} src={ProfileSRC} /> : <Profile />}
           <button className="ml-5" onClick={handleClick}>
             Sign out
           </button>

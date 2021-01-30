@@ -74,3 +74,17 @@ export const loginWithGoogle = async (): Promise<firebase.auth.UserCredential> =
   const GoogleProvider = new firebase.auth.GoogleAuthProvider();
   return await firebase.auth().signInWithPopup(GoogleProvider);
 };
+
+export const createUser = async (
+  email: string,
+  password: string,
+): Promise<firebase.auth.UserCredential> => {
+  return await firebase.auth().createUserWithEmailAndPassword(email, password);
+};
+
+export const loginUser = async (
+  email: string,
+  password: string,
+): Promise<firebase.auth.UserCredential> => {
+  return await firebase.auth().signInWithEmailAndPassword(email, password);
+};

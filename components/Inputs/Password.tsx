@@ -4,14 +4,21 @@ import Input from "./Input";
 
 type Props = {
   placeholder?: string;
+  name?: string;
+  error?: string;
 };
 
-const Password: React.FC<Props> = ({ placeholder = "Password" }): JSX.Element => (
+const Password: React.FC<Props> = ({
+  placeholder = "Password",
+  name = "password",
+  error,
+}): JSX.Element => (
   <Input
     Icon={AiOutlineLock}
-    name="password"
+    name={name}
     placeholder={placeholder}
     type="password"
+    error={error && error}
     autocomplete="current-password"
   />
 );

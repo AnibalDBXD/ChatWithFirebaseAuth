@@ -12,7 +12,7 @@ const Email: React.FC<Props> = ({ placeholder = "Email" }): JSX.Element => (
     name="email"
     placeholder={placeholder}
     type="email"
-    autocomplete="username"
+    autocomplete="email"
   />
 );
 

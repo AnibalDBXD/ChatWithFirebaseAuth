@@ -23,10 +23,11 @@ const Chat: React.FC<Props> = ({ UserInstance, ChatDB }): JSX.Element => {
     if (UserInstance) {
       const InputValue = ref.current?.value;
       if (InputValue) {
+        const Name = UserInstance.displayName ? UserInstance.displayName : UserInstance.email;
         const time = firebase.firestore.Timestamp.fromDate(new Date());
         const Message: message = {
           User: {
-            Name: UserInstance.displayName,
+            Name,
             photo: UserInstance.photoURL,
           },
           text: InputValue,
