@@ -74,7 +74,7 @@ const SigninPage: React.FC = (): JSX.Element => {
         <div className="my-4 flex justify-center">
           <p>
             Already a member?
-            <Link href="/signin">
+            <Link href="/login">
               <a className="ml-2 text-blue-500 border-blue-500">Login</a>
             </Link>
           </p>

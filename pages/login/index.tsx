@@ -56,7 +56,7 @@ const LoginPage: React.FC = (): JSX.Element => {
         <div className="my-4 flex justify-center">
           <p>
             Don&apos;t have an account?
-            <Link href="/login">
+            <Link href="/signin">
               <a className="ml-2 text-blue-500 border-blue-500">Register</a>
             </Link>
           </p>

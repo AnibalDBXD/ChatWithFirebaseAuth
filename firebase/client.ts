@@ -1,3 +1,5 @@
+import "firebase/auth";
+
 import firebase from "firebase";
 import { Dispatch, SetStateAction } from "react";
 

@@ -1,5 +1,6 @@
 import Chat from "../../components/Chat";
 import Layout from "../../components/Layout";
+import LoadingScreen from "../../components/Loading";
 import { ChatDB } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
 
@@ -9,7 +10,7 @@ const HomePage: React.FC = (): JSX.Element => {
   return (
     <>
       {!User ? (
-        <h1>Loading</h1>
+        <LoadingScreen />
       ) : (
         <Layout ProfileSRC={User?.photoURL} ProfileALT={User?.displayName} title={"Home"}>
           <Chat UserInstance={User} ChatDB={ChatDB} />

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import { message } from "../../../interfaces";
+import Ring from "../../Loading/Ring";
 import Message from "./Message";
 
 type Props = {
@@ -20,7 +21,7 @@ const View: React.FC<Props> = ({ MessagesList, Loading }): JSX.Element => {
       className="bg-gray-800 p-8 overflow-auto h-full w-screen  scrollbar scrollbar-track-gray-500 scrollbar-thumb-gray-400 scrollbar-thumb-rounded"
       style={{ height: "80vh" }}>
       {Loading ? (
-        <h1>Loading</h1>
+        <Ring size="16" />
       ) : (
         MessagesList &&
         MessagesList.map((msg, i) => {
